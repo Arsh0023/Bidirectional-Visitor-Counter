@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.conf import settings
+from django.urls import reverse
+from django.http import HttpResponseRedirect
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from base_app.models import Person
@@ -29,16 +31,25 @@ def getvisitorout(request,passphrase):
     pass
 
 @api_view(['GET'])
-def setvisitorin(request,passphrase):
+def setvisitorin(request,passphrase,inp):
     if(passphrase == settings.PASSPHRASE):
-        pass
+        person = Person.objects.all()
+        p = person[0]
+        p.visitors_in = inp
+        p.save()
+        return HttpResponseRedirect(reverse('base_app:home'))
     else:
         return Response('Invalid Request!')
     pass
 
 @api_view(['GET'])
-def setvisitorout(request,passphrase):
+def setvisitorout(request,passphrase,inp):
     if(passphrase == settings.PASSPHRASE):
+        person = Person.objects.all()
+        p = person[0]
+        p.visitors_out = inp
+        p.save()
+        return HttpResponseRedirect(reverse('base_app:home'))
         pass
     else:
         return Response('Invalid Request!')
