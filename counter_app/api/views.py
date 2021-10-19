@@ -14,7 +14,11 @@ def getvisitorin(request,passphrase):
     if(passphrase == settings.PASSPHRASE):
         person = Person.objects.all()
         p = person[0]
-        return Response(p.visitors_in)
+        header = {
+            "Access-Control-Allow-Origin" : "*", 
+            "Access-Control-Allow-Credentials" : True
+        }
+        return Response(p.visitors_in,headers=header)
     else:
         return Response('Invalid Request!')
     pass
@@ -24,7 +28,11 @@ def getvisitorout(request,passphrase):
     if(passphrase == settings.PASSPHRASE):
         person = Person.objects.all()
         p = person[0]
-        return Response(p.visitors_out)
+        header = {
+            "Access-Control-Allow-Origin" : "*", 
+            "Access-Control-Allow-Credentials" : True
+        }
+        return Response(p.visitors_out,headers=header)
         pass
     else:
         return Response('Invalid Request!')

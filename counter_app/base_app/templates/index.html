@@ -62,14 +62,28 @@
     const $visitor_out = $('#visitor_out');
 
     var interval = setInterval(async function() {
-    const res_in = await fetch('https://arsh0023.pythonanywhere.com/api/getvisitorin/123/');
+    const res_in = await fetch('https://arsh0023.pythonanywhere.com/api/getvisitorin/123/',{ mode: 'no-cors'});
     const json_in = await res_in.json();
-    const res_out = await fetch('https://arsh0023.pythonanywhere.com/api/getvisitorout/123/');
+    const res_out = await fetch('https://arsh0023.pythonanywhere.com/api/getvisitorout/123/',{ mode: 'no-cors'});
     const json_out = await res_out.json();
+    console.log('Hellow!')
     console.log(json_out);
     console.log(json_in);
     $visitor_in.html(json_in);
     $visitor_out.html(json_out);
     }, 1000);
 </script>
+<!-- <script>
+    setInterval(function() {
+        $.ajax({
+            type: "GET",
+            url: 'https://arsh0023.pythonanywhere.com/api/getvisitorin/123/',  // URL to your view that serves new info
+        })
+        .done(function(response) {
+            console.log(response);
+            $('#').append(response);
+            append_increment += 10;
+        });
+    }, 1000)
+</script> -->
 </html>
