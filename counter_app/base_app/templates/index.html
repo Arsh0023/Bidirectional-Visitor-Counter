@@ -24,7 +24,7 @@
             <div class="card border-success mx-sm-1 p-5">
                 <div class="card border-success shadow text-success p-3 my-card"><span class="fa fa-eye" aria-hidden="true"></span></div>
                 <div class="text-success text-center mt-3"><h4>Visitors In</h4></div>
-                <div class="text-success text-center mt-2"><h1>{{p.visitors_in}}</h1></div>
+                <div class="text-success text-center mt-2" id = "visitor_in" ><h1>{{p.visitors_in}}</h1></div>
             </div>
         </div>
 
@@ -32,7 +32,7 @@
             <div class="card border-info mx-sm-1 p-5">
                 <div class="card border-info shadow text-info p-3 my-card" ><span class="fa fa-car" aria-hidden="true"></span></div>
                 <div class="text-info text-center mt-3"><h4>Visitors Out</h4></div>
-                <div class="text-info text-center mt-2"><h1>{{p.visitors_out}}</h1></div>
+                <div class="text-info text-center mt-2" id = "visitor_out"><h1>{{p.visitors_out}}</h1></div>
             </div>
         </div>
         {% endfor %}
@@ -56,4 +56,17 @@
 <a class = "btn btn-dark" href="{% url 'base_app:reset'%}" style="margin-left:90%; margin-bottom: 5px;">Reset</a>
 <a class = "btn btn-dark" href="admin/" style="margin-left:90%;">Admin</a>
 </body>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    const $visitor_in = $('#visitor_in');
+    const $visitor_out = $('#visitor_out');
+
+    var interval = setInterval(async function() {
+    const res_in = await fetch('https://arsh0023.pythonanywhere.com/api/getvisitorin/123/');
+    const json_in = await res_in.json();
+    const res_out = await fetch('https://arsh0023.pythonanywhere.com/api/getvisitorout/123/');
+    const json_out = await res_out.json();
+    $visitor_out.html(json_out);
+    }, 1000);
+</script>
 </html>
