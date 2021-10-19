@@ -66,6 +66,9 @@
     const json_in = await res_in.json();
     const res_out = await fetch('https://arsh0023.pythonanywhere.com/api/getvisitorout/123/');
     const json_out = await res_out.json();
+    console.log(json_out);
+    console.log(json_in);
+    $visitor_in.html(json_in);
     $visitor_out.html(json_out);
     }, 1000);
 </script>
