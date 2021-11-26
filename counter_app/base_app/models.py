@@ -4,3 +4,4 @@ from django.db import models
 class Person(models.Model):
     visitors_in = models.IntegerField(default=0)
     visitors_out = models.IntegerField(default=0)
+    temperature = models.FloatField(default=0)

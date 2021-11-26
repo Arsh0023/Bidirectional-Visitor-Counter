@@ -53,7 +53,21 @@
         </div> -->
      </div>
 </div>
-<a class = "btn btn-dark" href="{% url 'base_app:reset'%}" style="margin-left:90%; margin-bottom: 5px;">Reset</a>
+{% for p in person %}
+
+        <!-- <div class="jumbotron" style="margin-top:15%; margin-left:5%; margin-right:5%;"> -->
+            <div class="row w-80" style="margin-left:4%; margin-right:5%;">
+                <div class="col-md-6">
+                    <div class="card border-info mx-sm-1 p-5">
+                        <div class="card border-info shadow text-info p-3 my-card" ><span class="fa fa-car" aria-hidden="true"></span></div>
+                        <div class="text-info text-center mt-3"><h4>Temperature</h4></div>
+                        <div class="text-info text-center mt-2" id = "visitor_out"><h1>{{p.visitors_out}}</h1></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+<a class = "btn btn-dark" href="{% url 'base_app:reset'%}" style="margin-left:90%; margin-bottom: 5px; margin-top:0;">Reset</a>
 <a class = "btn btn-dark" href="admin/" style="margin-left:90%;">Admin</a>
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
