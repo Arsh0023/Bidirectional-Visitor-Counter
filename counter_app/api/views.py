@@ -64,7 +64,7 @@ def setvisitorout(request,passphrase,inp):
     pass
 
 @api_view(['GET'])
-def gettemp(request,passphrase,temp):
+def gettemp(request,passphrase):
     if(passphrase == settings.PASSPHRASE):
         person = Person.objects.all()
         p = person[0]
