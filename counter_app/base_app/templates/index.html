@@ -81,8 +81,8 @@
     const json_in = await res_in.json();
     const res_out = await fetch('https://arsh0023.pythonanywhere.com/api/getvisitorout/123/',{ mode: 'no-cors'});
     const json_out = await res_out.json();
-    let temp_old = await fetch('https://arsh0023.pythonanywhere.com/api/gettemp/123/',{ mode: 'no-cors'});
-    temp_old = temp_old.json();
+    const temp_req = await fetch('https://arsh0023.pythonanywhere.com/api/gettemp/123/',{ mode: 'no-cors'});
+    temp_old = await temp_req.json();
     function random_temp(temp)
     {
          temp += Math.random()*2 - 1;
