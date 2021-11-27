@@ -59,9 +59,9 @@
             <div class="row w-80" style="margin-left:4%; margin-right:5%;">
                 <div class="col-md-6">
                     <div class="card border-info mx-sm-1 p-5">
-                        <div class="card border-info shadow text-info p-3 my-card" ><span class="fa fa-car" aria-hidden="true"></span></div>
+                        <div class="card border-info shadow text-info p-3 my-card" ><span class="fa fa-heart" aria-hidden="true"></span></div>
                         <div class="text-info text-center mt-3"><h4>Temperature</h4></div>
-                        <div class="text-info text-center mt-2" id = "visitor_out"><h1>{{p.visitors_out}}</h1></div>
+                        <div class="text-info text-center mt-2" id = "temperature"><h1>{{p.temperature}}</h1></div>
                     </div>
                 </div>
             </div>
@@ -74,17 +74,27 @@
 <script>
     const $visitor_in = $('#visitor_in');
     const $visitor_out = $('#visitor_out');
+    const $temperature = $('#temperature');
 
     var interval = setInterval(async function() {
     const res_in = await fetch('https://arsh0023.pythonanywhere.com/api/getvisitorin/123/',{ mode: 'no-cors'});
     const json_in = await res_in.json();
     const res_out = await fetch('https://arsh0023.pythonanywhere.com/api/getvisitorout/123/',{ mode: 'no-cors'});
     const json_out = await res_out.json();
+    let temp_old = await fetch('https://arsh0023.pythonanywhere.com/api/gettemp/123/',{ mode: 'no-cors'});
+    temp_old = temp_old.json();
+    function random_temp(temp)
+    {
+         temp += Math.random()*2 - 1;
+         return temp.toFixed(1);
+    }
+
     console.log('Hellow!')
     console.log(json_out);
     console.log(json_in);
     $visitor_in.html(json_in);
     $visitor_out.html(json_out);
+    $temperature.html(temp_old);
     }, 1000);
 </script>
 <!-- <script>

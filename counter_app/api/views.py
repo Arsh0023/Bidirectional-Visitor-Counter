@@ -62,3 +62,28 @@ def setvisitorout(request,passphrase,inp):
     else:
         return Response('Invalid Request!')
     pass
+
+@api_view(['GET'])
+def gettemp(request,passphrase,temp):
+    if(passphrase == settings.PASSPHRASE):
+        person = Person.objects.all()
+        p = person[0]
+        header = {
+            "Access-Control-Allow-Origin" : "*", 
+            "Access-Control-Allow-Credentials" : True
+        }
+        return Response(p.temperature,headers=header)
+    else:
+        return Response("Invalid Response!")
+
+@api_view(['GET'])
+def settemp(request,passphrase,temp):
+    if(passphrase == settings.PASSPHRASE):
+        person = Person.objects.all()
+        p = person[0]
+        temp = float(temp)
+        p.temperature = temp
+        p.save()
+        return HttpResponseRedirect(reverse('base_app:home'))
+    else:
+        return Response("Invalid Request!")
